@@ -27,13 +27,18 @@ create table Tipo(
 	,Tipo			varchar(255) not null unique
 )
 
+create table Plataforma(
+	IdPlataforma		int primary key identity
+	,Plataforma			varchar(255) not null unique
+);
+
 create table Lancamento(
 	IdLancamentos		INT primary key identity
 	,Nome				varchar(255) not null
 	,Sinopse			varchar(255) not null
 	,Duracao			varchar(255) not null
 	,DataLancamento		DateTime not  null
-	,Plataforma			varchar(255)
+	,IdPlataforma		int foreign key references Plataforma(IdPlataforma)
 	,Id_Tipo			int foreign key references Tipo(IdTipo)
 	,Id_Genero			int foreign key references Genero(IdGenero)
 );
@@ -42,3 +47,6 @@ create table Favorito(
 	Id_Usuario		int foreign key references Usuario(Id_Usuario)
 	,IdLancamento	int foreign key references Lancamento(IdLancamentos)
 );
+drop table Plataforma
+drop table Favorito
+drop table Lancamento
